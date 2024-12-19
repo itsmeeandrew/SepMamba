@@ -1,0 +1,8 @@
+_target_: src.data.classes.Mixer.Mixer
+root_dir: /path/to/wsj0
+n_samples: 20000
+resample_rate: 8000
+snr: [-2.5, 2.5]
+to_seconds: 4
+do_speed_perturb: True
+subset: "si_tr_s"

@@ -1,0 +1,45 @@
+defaults:
+  - dataset: 2mix_dyn
+  - optimizer: adamw
+  - lr_scheduler: steplr
+  - model: SepMamba
+  - _self_
+
+hydra:
+  run:
+    dir: /path/to/outputs/${wandb.experiment_name}
+
+dataloader:
+  _target_: torch.utils.data.DataLoader
+  batch_size: 1
+  num_workers: 4
+  shuffle: True
+  pin_memory: True
+
+val_dataset:
+  _target_: src.data.classes.WSJ2SpeakerLoader.WSJ0Mix2SpeakerDataset
+  root_dir: /path/to/wsj0-mix/2speakers/wav8k/min/
+  subset: "tt"
+  to_length: 4
+  process: True
+
+epochs: 500
+float32: True
+
+logging:
+  print_freq: 2000
+  eval_freq: 1
+
+wandb:
+  use_wandb: True
+  log_gradients: False
+  project_name: sepmamba-speaker-separation
+  experiment_name: ${now:%Y-%m-%d}_${now:%H-%M-%S}
+  log_metrics: True
+  log_spectrograms: False
+  log_audios: False
+
+load:
+  load_checkpoint: False
+  load_epoch: True # Keeping track of the epoch count
+  checkpoint_path: ""

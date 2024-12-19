@@ -1,0 +1,12 @@
+_target_: src.models.SepMamba.SepMamba
+dim: 64
+kernel_sizes:
+  - 16
+  - 16
+  - 16
+strides:
+  - 2
+  - 2
+  - 2
+act_fn: "relu"
+num_blocks: 4
