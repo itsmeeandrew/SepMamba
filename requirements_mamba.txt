@@ -1,2 +1,2 @@
-mamba_ssm
+mamba_ssm==1.2.0.post1
 causal-conv1d
